@@ -1,11 +1,11 @@
 import React from 'react';
-export default function Todo() {
+export default function Todo(props) {
   return (
     <li className="todo stack-small">
       <div className="c-cb">
-        <input id="todo-2" type="checkbox" />
+        <input id={props.id} type="checkbox" defaultChecked={props.completed}/>
         <label className="todo-label" htmlFor="todo-2">
-          Repeat
+          {props.name}
         </label>
       </div>
       <div className="btn-group">

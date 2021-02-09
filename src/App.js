@@ -1,7 +1,11 @@
 import React from 'react';
 import Todo from './components/Todo';
 
-const App = () => {
+const App = ({tasks}) => {
+
+  /**short handed for <Todo id={task.id} name={task.name} completed={task.completed} /> */
+  const taskList = tasks.map(task => <Todo key={task.id} {...task} />)
+
   return (
     <React.StrictMode>
       <div className="todoapp stack-large">
@@ -52,9 +56,10 @@ const App = () => {
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading"
       >
-        <Todo />
-        <Todo />
-        <Todo />
+        {/* <Todo name='eat' completed={true} id="todo-0"/>
+        <Todo name='sleep' completed={false} id="todo-1"/>
+        <Todo name='repeat' completed={false} id="todo-2"/> */}
+        {taskList}
       </ul>
     </div>
     </React.StrictMode>
