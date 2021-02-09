@@ -10,3 +10,25 @@ User can
 - delete any task, using the mouse or keyboard
 - edit any task, using the mouse or keyboard
 - view a specific subset of tasks: All tasks, only active tasks, or only the completed tasks.
+
+#### Accessibility Features
+```
+<button type="button" className="btn toggle-btn" aria-pressed="true">
+  <span className="visually-hidden">Show </span>
+  <span>all</span>
+  <span className="visually-hidden"> tasks</span>
+</button>
+```
+- aria-pressed tells assistive technology (like screen readers) that the button can be in one of two states: pressed or unpressed.
+NOTE: The aria-pressed attribute has a value of "true"(string)instead of {true} because aria-pressed is not a true boolean attribute.
+- The class visually-hidden. any element with this class will be hidden from sighted users and still available to screen reader users — this is because these words are not needed by sighted users; they are there to provide more information about what the button does for screenreader users.
+
+```
+<ul
+  role="list"
+  className="todo-list stack-large stack-exception"
+  aria-labelledby="list-heading"
+>
+```
+- The role attribute helps assistive technology explain what kind of element a tag represents.
+- The aria-labelledby attribute tells assistive technologies that we're treating our list heading as the label that describes the purpose of the list beneath it. Making this association gives the list a more informative context, which could help screen reader users better understand the purpose of it.
