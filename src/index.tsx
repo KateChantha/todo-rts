@@ -1,10 +1,12 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 
 const App = () => {
   return (
-    <div>
+    <React.StrictMode>
       <h1>Hi there!</h1>
-    </div>
+    </React.StrictMode>
   );
 };
 
