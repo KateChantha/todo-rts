@@ -32,3 +32,7 @@ NOTE: The aria-pressed attribute has a value of "true"(string)instead of {true} 
 ```
 - The role attribute helps assistive technology explain what kind of element a tag represents.
 - The aria-labelledby attribute tells assistive technologies that we're treating our list heading as the label that describes the purpose of the list beneath it. Making this association gives the list a more informative context, which could help screen reader users better understand the purpose of it.
+
+#### Check Box 
+ when you click on a checkbox, it checks and unchecks appropriately. As a feature of HTML, the browser knows how to remember which checkbox inputs are checked or unchecked without our help. This feature hides a problem, however: toggling a checkbox doesn't change the state in our React application. This means that the browser and our app are now out-of-sync. We have to write our own code to put the browser back in sync with our app.
+ 
