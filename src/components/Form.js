@@ -6,6 +6,11 @@ export default function Form({addTask}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!name) {
+      alert('Please enter task name');
+      return;
+    }
+
     addTask(name);
     setName('')
   }

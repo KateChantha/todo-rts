@@ -7,10 +7,19 @@ export default function Todo(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    
+
+    if (!newName) {
+      alert('Please fill out new task name');
+      return;
+    }
+
     editTask(props.id, newName);
     setNewName("");
     setEditing(false);
+  }
+
+  function handleChnage(e) {
+    setNewName(e.target.value)
   }
 
   const editingTemplate = (
@@ -23,7 +32,7 @@ export default function Todo(props) {
           id={id} 
           className="todo-text" 
           type="text" 
-          onChange={e => setNewName(e.target.value)}
+          onChange={handleChnage}
         />
       </div>
 
