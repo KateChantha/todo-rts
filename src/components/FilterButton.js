@@ -1,10 +1,15 @@
 import React from "react";
 
-function FilterButton(props) {
+function FilterButton({name, setFilter}) {
   return (
-    <button type="button" className="btn toggle-btn" aria-pressed="true">
+    <button 
+      type="button" 
+      className="btn toggle-btn" 
+      aria-pressed="true"
+      onClick={() => setFilter(name)}
+    >
       <span className="visually-hidden">Show </span>
-      <span>all </span>
+      <span>{name}</span>
       <span className="visually-hidden"> tasks</span>
     </button>
   );
