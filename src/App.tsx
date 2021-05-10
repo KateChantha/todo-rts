@@ -13,7 +13,7 @@ interface Props {
   tasks: TaskType[]
 }
 
-type FilterType = 'All' | 'Active' | 'Completed'
+export type FilterType = 'All' | 'Active' | 'Completed'
 
 /** Helper Function */
 const FILTER_MAP = {
@@ -22,7 +22,7 @@ const FILTER_MAP = {
   Completed: (task: TaskType) => task.completed
 };
 
-const FILTER_NAMES = Object.keys(FILTER_MAP);
+const FILTER_NAMES: FilterType[] = ['All' , 'Active' , 'Completed'];
 
 const App: React.FC<Props> = (props) => {
   const [tasks, setTasks] = useState<TaskType[]>(props.tasks);
@@ -77,7 +77,7 @@ const App: React.FC<Props> = (props) => {
       />
   ))
 
-  const filterList = FILTER_NAMES.map((name: string) => (
+  const filterList = FILTER_NAMES.map((name: FilterType) => (
     <FilterButton 
       key={name} 
       name={name}
