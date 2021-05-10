@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 
-export default function Form({addTask}) {
+interface Props {
+  addTask: (name: string) => void
+}
+
+const Form: React.FC<Props> = ({addTask}) => {
 
   const [name, setName] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!name) {
       alert('Please enter task name');
@@ -15,7 +19,7 @@ export default function Form({addTask}) {
     setName('')
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("input",e.target.value )
     setName(e.target.value)
   }
@@ -42,3 +46,5 @@ export default function Form({addTask}) {
     </form>
   )
 }
+
+export default Form;
