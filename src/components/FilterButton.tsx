@@ -1,6 +1,13 @@
 import React from "react";
+import { FilterType } from '../App'
 
-function FilterButton({name, setFilter, isPressed}) {
+interface Props {
+  name: FilterType;
+  setFilter: React.Dispatch<React.SetStateAction<FilterType>>;
+  isPressed?: boolean;
+}
+
+const FilterButton: React.FC<Props> = ({name, setFilter, isPressed}) => {
   return (
     <button 
       type="button" 
