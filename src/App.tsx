@@ -4,20 +4,32 @@ import Todo from './components/Todo';
 import Form from './components/Form';
 import FilterButton from './components/FilterButton';
 
+type TaskType = {
+  id: string;
+  name: string;
+  completed: boolean;
+}
+interface Props {
+  tasks: TaskType[]
+}
+
+type FilterType = 'All' | 'Active' | 'Completed'
+
+/** Helper Function */
 const FILTER_MAP = {
   All: () => true,
-  Active: task => !task.completed,
-  Completed: task => task.completed
+  Active: (task: TaskType) => !task.completed,
+  Completed: (task: TaskType) => task.completed
 };
 
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
-const App = (props) => {
-  const [tasks, setTasks] = useState(props.tasks);
-  const [filter, setFilter] = useState('All')
+const App: React.FC<Props> = (props) => {
+  const [tasks, setTasks] = useState<TaskType[]>(props.tasks);
+  const [filter, setFilter] = useState<FilterType>('All')
 
-  const addTask = (name) => {
-    const newTask = { 
+  const addTask = (name: string): void => {
+    const newTask: TaskType = { 
       id: "todo-" + nanoid(), 
       name: name, 
       completed: false 
@@ -26,7 +38,7 @@ const App = (props) => {
     setTasks([...tasks, newTask]);
   }
 
-  const toggleTaskCompleted = (id)=> {
+  const toggleTaskCompleted = (id: string)=> {
     // change the completed property of only the task that was toggled
     const updatedTasks = tasks.map(task => {
       return id === task.id 
@@ -37,13 +49,13 @@ const App = (props) => {
     setTasks(updatedTasks);
   }
 
-  const deleteTask = (id) => {
+  const deleteTask = (id: string) => {
     const remainingTasks = tasks.filter(task => id !== task.id)
 
     setTasks(remainingTasks);
   }
 
-  const editTask = (id, newName) => {
+  const editTask = (id: string, newName: string) => {
     const editedTasks = tasks.map(task => {
       return id === task.id
             ? {...task, name: newName}
@@ -65,7 +77,7 @@ const App = (props) => {
       />
   ))
 
-  const filterList = FILTER_NAMES.map(name => (
+  const filterList = FILTER_NAMES.map((name: string) => (
     <FilterButton 
       key={name} 
       name={name}

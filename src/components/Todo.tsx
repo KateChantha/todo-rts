@@ -1,11 +1,22 @@
 import React, {useState} from 'react';
-export default function Todo(props) {
-  const {id, name, completed, toggleTaskCompleted, deleteTask, editTask} = props;
 
-  const [isEditing, setEditing] = useState(false);
-  const [newName, setNewName] = useState('')
+interface Props {
+  id: string;
+  name: string;
+  completed: boolean;
+  toggleTaskCompleted: (id: string) => void;
+  deleteTask: (id: string) => void;
+  editTask: (id: string, newName: string) => void;
+}
 
-  function handleSubmit(e) {
+const Todo:React.FC<Props> = (props) => {
+  const { id, name, completed, toggleTaskCompleted, deleteTask, editTask } = props;
+  // console.log('in Todo', props)
+
+  const [isEditing, setEditing] = useState<boolean>(false);
+  const [newName, setNewName] = useState<string>('')
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (!newName) {
@@ -18,8 +29,9 @@ export default function Todo(props) {
     setEditing(false);
   }
 
-  function handleChnage(e) {
-    setNewName(e.target.value)
+  function handleChnage(e: React.ChangeEvent<HTMLInputElement>) {
+    // setNewName(e.target.value)
+    setNewName(e.currentTarget.value)
   }
 
   const editingTemplate = (
@@ -90,3 +102,5 @@ export default function Todo(props) {
     </li>
   )
 }
+
+export default Todo;

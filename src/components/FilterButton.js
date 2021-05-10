@@ -1,6 +1,6 @@
 import React from "react";
 
-function FilterButton({name, setFilter}) {
+function FilterButton({name, setFilter, isPressed}) {
   return (
     <button 
       type="button" 
