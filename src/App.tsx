@@ -3,15 +3,6 @@ import { nanoid } from "nanoid";
 import Todo from './components/Todo';
 import Form from './components/Form';
 import FilterButton from './components/FilterButton';
-import { StringMappingType } from 'typescript';
-
-const FILTER_MAP = {
-  All: () => true,
-  Active: (task: any) => !task.completed,
-  Completed: (task: any) => task.completed
-};
-
-const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 type TaskType = {
   id: string;
@@ -23,6 +14,15 @@ interface Props {
 }
 
 type FilterType = 'All' | 'Active' | 'Completed'
+
+/** Helper Function */
+const FILTER_MAP = {
+  All: () => true,
+  Active: (task: TaskType) => !task.completed,
+  Completed: (task: TaskType) => task.completed
+};
+
+const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 const App: React.FC<Props> = (props) => {
   const [tasks, setTasks] = useState<TaskType[]>(props.tasks);
